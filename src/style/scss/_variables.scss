@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+// Colors
+$color-primary-light: #fff;
+$color-primary-dark: #1D1E21;
+
+$color-secondary-light: #DCDBE2;
+$color-secondary-black: #242C36;
+
+$color-terciary-light: #DFDFDF;
+$color-terciary-dark: #41454A;
+
+$color-blue: #0478F4;
+$color-purple: #A350A3;
+$color-pink: #F74E9E;
+$color-red: #FF4F56;
+$color-orange: #F7821B;
+$color-yellow: #FFB526;
+$color-green: #65BA44;
+$color-gray: #8C8C8C;
+
+// Font Family
+$roboto-family: 'Roboto', sans-serif;
+
+// Font Weight
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-xbold: 900;
+
+// Font Size
+$font-size-xxs: 0.625rem;
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-xxl: 1.5rem;
+$font-size-xxxl: 2rem;
