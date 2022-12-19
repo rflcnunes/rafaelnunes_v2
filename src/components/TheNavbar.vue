@@ -1,6 +1,13 @@
 <template>
   <nav>
-    <img id="icon" src="@/assets/robot_icon.svg" alt="robot_icon" />
+    <img
+      v-if="!mobile"
+      id="icon"
+      src="@/assets/robot_icon.svg"
+      alt="robot_icon"
+    />
+    <TheIcon v-else icon="menu" />
+    <i class="bi bi-list"></i>
     <div id="options">
       <router-link to="/">Home</router-link>
       <router-link to="/works">Works</router-link>
@@ -11,13 +18,63 @@
 </template>
 
 <script>
+const TheIcon = () => import("@/components/TheIcon.vue");
 export default {
   name: "TheNavbar",
+  components: {
+    TheIcon,
+  },
+  data() {
+    return {
+      screen: window.innerWidth,
+      mobile: false,
+      mobileNav: false,
+    };
+  },
+  created() {
+    window.addEventListener("resize", this.checkScreen);
+    this.checkScreen();
+  },
+  methods: {
+    checkScreen() {
+      this.windowWidth = window.innerWidth;
+
+      if (this.windowWidth <= 568) {
+        this.mobile = true;
+        return;
+      }
+
+      this.mobile = false;
+      this.mobileNav = false;
+      return;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/style/scss/_variables.scss";
+
+@media screen and (max-width: 568px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+
+    #icon {
+      margin-bottom: 20px;
+    }
+
+    #options {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      a {
+        margin: 10px;
+      }
+    }
+  }
+}
 
 nav {
   padding: 30px;
