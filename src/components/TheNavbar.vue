@@ -88,7 +88,7 @@ nav {
   }
 
   #options {
-    width: 50%;
+    width: 30%;
     padding: 4px;
     display: flex;
     justify-content: space-between;
