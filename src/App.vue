@@ -17,7 +17,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/style/scss/_variables.scss";
+
 #app {
+  @include reset();
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

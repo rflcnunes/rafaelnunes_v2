@@ -9,10 +9,15 @@
     <TheIcon v-else icon="menu" />
     <i class="bi bi-list"></i>
     <div id="options">
-      <router-link to="/">Home</router-link>
-      <router-link to="/works">Works</router-link>
-      <router-link to="/skills">Skills</router-link>
-      <router-link to="/about">About</router-link>
+      <div id="theme_group_options" @click="darkModeClass()">
+        <TheIcon :icon="theme" />
+      </div>
+      <div id="navigation">
+        <router-link to="/">Home</router-link>
+        <router-link to="/works">Works</router-link>
+        <router-link to="/skills">Skills</router-link>
+        <router-link to="/about">About</router-link>
+      </div>
     </div>
   </nav>
 </template>
@@ -29,11 +34,22 @@ export default {
       screen: window.innerWidth,
       mobile: false,
       mobileNav: false,
+      darkMode: false,
+      theme: "",
     };
   },
   created() {
     window.addEventListener("resize", this.checkScreen);
     this.checkScreen();
+    localStorage.getItem("theme") !== null
+      ? (this.theme = localStorage.getItem("theme"))
+      : (this.theme = "light_mode");
+  },
+  watch: {
+    darkMode() {
+      this.theme = this.darkMode ? "dark_mode" : "light_mode";
+      localStorage.setItem("theme", this.theme);
+    },
   },
   methods: {
     checkScreen() {
@@ -46,6 +62,10 @@ export default {
 
       this.mobile = false;
       this.mobileNav = false;
+    },
+    darkModeClass() {
+      this.darkMode = !this.darkMode;
+      localStorage.setItem("theme", this.theme);
     },
   },
 };
@@ -88,21 +108,43 @@ nav {
   }
 
   #options {
-    width: 30%;
+    width: 40%;
     padding: 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    a {
-      font-weight: $font-weight-medium;
-      color: $color-primary-dark;
-      text-decoration: none;
+    #theme_group_options {
+      @include reset();
+      @include positionCenter();
+      cursor: pointer;
+    }
 
-      &.router-link-exact-active {
-        color: $color-green;
-        font-weight: $font-weight-xbold;
-        text-decoration: dashed underline;
+    #navigation {
+      width: 80%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      a {
+        font-weight: $font-weight-medium;
+        color: $color-primary-dark;
+        text-decoration: none;
+
+        &:hover {
+          color: $color-gray;
+        }
+
+        &.router-link-exact-active {
+          color: $color-green;
+          font-weight: $font-weight-xbold;
+          text-decoration: dashed underline;
+
+          &:hover {
+            color: $color-gray;
+          }
+        }
       }
     }
   }
