@@ -46,7 +46,6 @@ export default {
 
       this.mobile = false;
       this.mobileNav = false;
-      return;
     },
   },
 };
